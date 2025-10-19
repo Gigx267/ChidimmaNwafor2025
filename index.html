@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chidimma Nwafor | Visual Artist</title>
+    <link rel="icon" type="image/x-icon" href="p (2).jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #d4af37;
+            --accent: #8b7355;
+            --light: #f8f5f0;
+            --dark: #121212;
+            --text: #333333;
+            --text-light: #777777;
+            --transition: all 0.4s ease;
+            --canvas: #f0e6d2;
+            --brushstroke: #3a2c1e;
+            --african-red: #9e2a2b;
+            --african-brown: #5d4037;
+            --african-gold: #b7950b;
+            --african-earth: #8d6e63;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url('./p\ \(6\).jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+       
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--african-gold), var(--african-red));
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-family: 'Crimson Text', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* Loading Screen */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--african-brown);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid var(--african-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        #menu {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        #menu a {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            background: rgba(93, 64, 55, 0.7);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Playfair Display', serif;
+        }
+
+        #menu a:hover {
+            background: var(--african-gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(183, 149, 11, 0.4);
+        }
+
+        /* Main Content */
+        #middle {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--light);
+            position: relative;
+        }
+
+    
+
+        #middle h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, #f8f5f0, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        #middle h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+        }
+
+        #middle h2:after {
+            display: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            background: var(--african-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(183, 149, 11, 0.4);
+        }
+
+        .social-links i {
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+
+        /* Portfolio Navigation */
+        .portfolio-nav {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .portfolio-nav a {
+            padding: 12px 25px;
+            background: rgba(183, 149, 11, 0.3);
+            border: 1px solid rgba(183, 149, 11, 0.5);
+            border-radius: 30px;
+            color: var(--light);
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .portfolio-nav a:hover {
+            background: var(--african-gold);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(183, 149, 11, 0.4);
+        }
+
+        /* African Pattern Overlay */
+        .african-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 C40,10 60,30 80,20 C90,30 70,50 80,60 C70,70 50,60 40,70 C30,60 10,70 20,50 C10,40 30,30 20,20 Z" fill="none" stroke="%23b7950b" stroke-width="0.5" opacity="0.1"/><path d="M10,10 C30,0 50,20 70,10 C80,20 60,40 70,50 C60,60 40,50 30,60 C20,50 0,60 10,40 C0,30 20,20 10,10 Z" fill="none" stroke="%239e2a2b" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 200px 200px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Containers */
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            overflow-y: auto;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+            z-index: 90;
+            background-image: url('./p\ \(5\).jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(248, 245, 240, 0.92);
+            z-index: -1;
+        }
+
+        .container.active {
+            transform: translateX(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 115, 85, 0.2);
+            border: 1px solid var(--african-earth);
+        }
+
+        .close-btn:hover {
+            color: var(--african-red);
+            transform: scale(1.1);
+            background: rgba(158, 42, 43, 0.1);
+        }
+
+        .container-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Work Section */
+        .work-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .work-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: var(--light);
+            background: linear-gradient(135deg, var(--african-earth), var(--african-red));
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .work-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--african-red), var(--african-earth));
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 8px solid white;
+            filter: sepia(0.3) contrast(1.1);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--african-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--african-gold), var(--african-red));
+        }
+
+        .contact-info h2 {
+            color: var(--african-earth);
+        }
+
+        .contact-info h4 {
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .exhibition-list {
+            margin-left: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .exhibition-list p {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .exhibition-list p:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--african-red);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        #footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(93, 64, 55, 0.9);
+            color: var(--light);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            z-index: 80;
+            backdrop-filter: blur(5px);
+            border-top: 1px solid var(--african-gold);
+        }
+
+        /* African Pattern Divider */
+        .african-divider {
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" viewBox="0 0 100 20"><path d="M0,10 Q25,0 50,10 T100,10 L100,20 L0,20 Z" fill="%23b7950b" opacity="0.7"/><path d="M0,10 Q25,20 50,10 T100,10 L100,20 L0,20 Z" fill="%239e2a2b" opacity="0.7"/></svg>');
+            background-size: cover;
+            margin: 2rem 0;
+            opacity: 0.8;
+        }
+
+        /* Adinkra Symbol Styling */
+        .adinkra-symbol {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23b7950b" stroke-width="5"/><path d="M30,30 L70,70 M70,30 L30,70" stroke="%239e2a2b" stroke-width="5"/></svg>');
+            background-size: contain;
+            margin: 0 10px;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            #middle h1 {
+                font-size: 2.5rem;
+            }
+            
+            #menu {
+                top: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .work-buttons, .portfolio-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .container-content {
+                padding: 1rem;
+            }
+            
+            .portfolio-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div id="particles-js"></div>
+    <div class="african-pattern"></div>
+    
+    <!-- Navigation Menu -->
+    <div id="menu">
+        <a onclick="showabout()">About</a>
+        <a onclick="showwork()">Portfolio</a>
+        <a onclick="showcontact()">CV</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="middle" class="animated slideInDown" style="animation-delay:2.0s;">
+        <h1>Chidimma Nwafor</h1>
+        <h2>Visual Artist</h2>
+        
+        <!-- Portfolio Navigation Links -->
+        <div class="portfolio-nav">
+            <a href="https://chidimmanwafor.com.ng/Paintings%20(2).pdf">View Paintings</a>
+            <a href="https://chidimmanwafor.com.ng/Oil%20studies%20(3).pdf">View Oil Studies</a>
+        </div>
+        
+        <div class="social-links">
+            <a class="social" href="https://www.instagram.com/chidimmanwafor_art">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a class="social" href="https://twitter.com/ChidimmaNwafor_">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a class="social" href="https://www.instagram.com/chidimmanwafor_art">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Work Container -->
+    <div id="work_container" class="container">
+        <div class="close-btn" onclick="closework()"><i class="fas fa-times"></i></div>
+        <div class="container-content">
+            <h1>Portfolio</h1>
+            <p>Explore Chidimma's artistic works through the collections below.</p>
+            <div class="work-buttons">
+                <a href="https://chidimmanwafor.com.ng/Paintings%20(2).pdf" class="work-button">View Paintings</a>
+                <a href="https://chidimmanwafor.com.ng/Oil%20studies%20(3).pdf" class="work-button">View Oil Studies</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Container -->
+    <div id="about_container" class="container">
+        <div class="close-btn" onclick="closeabout()"><i class="fas fa-times"></i></div>
+        <div class="container-content">
+            <h1>Chidimma Nwafor</h1>
+            <div class="about-grid">
+                <div>
+                    <h2>Biography</h2>
+                    <p>
+                        Chidimma Nwafor (b. 1995) is a Nigerian visual artist born in Anambra, Nigeria. Her artistry 
+                        delves into the societal stereotypes impacting women and the subtle intricacies of human 
+                        emotion. Through her paintings, characterized by muted and dark color palettes inspired by 
+                        the Baroque movement, she challenges and questions gender stereotypes and societal 
+                        expectations. Nwafor holds a Bachelor of Arts degree in Fine Arts from the University of 
+                        Benin. Currently based in Lagos, Nigeria, she works as a full-time artist, exploring and 
+                        reflecting upon these themes in her compelling artwork.
+                    </p>
+                </div>
+                <div>
+                    <img class="profile-img" src="profile.jpg" alt="Chidimma Nwafor">
+                </div>
+            </div>
+            
+            <div class="african-divider"></div>
+            
+            <h2 style="color: #f0e6d2;">Artist Statement</h2>
+            <p style="color: #f8f5f0;">
+                In my art, I delve deep into the intricate emotional landscape of human experience, 
+                particularly focusing on the societal stereotypes that impact women emotionally, mentally, 
+                and physically. Born and brought up in Nigeria, my work is a reflection of the cultural and 
+                societal nuances I have observed and experienced throughout my life.
+            </p>
+            <p style="color: #f0e6d2;" >
+                My artistic journey is driven by a profound curiosity about human emotion and expression. I 
+                am passionate about capturing the nuanced bodily and facial expressions that reveal the 
+                hidden layers of human emotion, serving as a lens through which I interpret the 
+                complexities of the human emotional experience.
+            </p>
+            <p style="color: #f0e6d2;" >
+                Venturing beyond the surface, I explore the intricate relationship between societal 
+                stereotypes and the unconscious mind. I am fascinated by how deeply ingrained societal 
+                norms and expectations seep into our subconscious, shaping our beliefs, perceptions, and 
+                self-conceptions. Drawing from the realm of the unconscious mind, I delve into the hidden 
+                desires, fears, and fantasies that manifest in our dreams, thoughts, and creative 
+                expressions.
+            </p>
+            <p  style="color: #f0e6d2;" >
+                Inspired by the Baroque movement, my artistic style is characterized by a masterful use of 
+                muted and dark color palettes, imbuing my paintings with a sense of subdued yet profound 
+                mood. I employ lights, shadows, and short brush strokes to create depth and texture, 
+                predominantly using oil colors for my paintings.
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact Container -->
+    <div id="contact_container" class="container">
+        <div class="close-btn" onclick="closecontact()"><i class="fas fa-times"></i></div>
+        <div class="container-content">
+            <h1>Curriculum Vitae</h1>
+            
+            <div class="contact-info">
+                <h2>Chidimma Nwafor</h2>
+                <h4>Lagos, Nigeria</h4>
+                <h4>Born 1995, Anambra, Nigeria</h4>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Education</h2>
+                <h4>2017 - Fine and Applied Art (Painting) - University of Benin, Edo State, Nigeria</h4>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Group Exhibitions</h2>
+                <div class="exhibition-list">
+                    <p>2024 - Kuenyehia prize Award and Exhibition, Accra, Ghana</p>
+                    <p>2024 - Mitochondrial gallery, In search of dream, Houston, USA</p>
+                    <p>2023 - 1952 Africa Art Accelerator, The dreams that freed us, Lagos, Nigeria</p>
+                    <p>2023 - Thought pyramid gallery, Discerning new visuals across the Atlantic, Lagos</p>
+                    <p>2023 - Arnhem collection 5, Group exhibition, Oyo, Nigeria</p>
+                    <p>2023 - The Artist commune, Into the multiverse, Lagos, Nigeria</p>
+                    <p>2022 - Imnotart gallery, Untapped, Illinois USA</p>
+                    <p>2022 - Eco bank Headquarters Pade art Exhibition, Lagos, Nigeria</p>
+                    <p>2022 - Thought Pyramid Gallery, Next of Kin, Lagos, Nigeria</p>
+                    <p>2021 - Life in my city Juried Exhibition, Vision 2020, so far so what?" Enugu, Nigeria</p>
+                    <p>2020 - Art climate gallery, The Art of discovery Rest, Rivers, Nigeria</p>
+                    <p>2020 - Vivid Art gallery, Inside life Art exhibition, Lagos, Nigeria</p>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Residencies</h2>
+                <h4>2023 - 1952 African Art Accelerator, Lagos, Nigeria Artist in Residence</h4>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Awards</h2>
+                <h4>2024 - Kuenyehia Prize, 2024 Finalist, Ghana</h4>
+                <h4>2023 - Art X Prize, 2023 Finalist, Art X Prize Lagos</h4>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Recognitions</h2>
+                <div class="exhibition-list">
+                    <p>2022 - ARTSY, Black Painters on Our Radar</p>
+                    <p>2022 - Hello Icon Magazine, Issue 013</p>
+                    <p>2022 - Sun News, Next of Kin Unfurls Future Masters</p>
+                    <p>2020 - Tribune News, Finalist Emerge Next of kin Art Contest</p>
+                    <p>2020 - SMEPEAKS, 7 Nigerian Female Painters Rocking the Male-Dominated Profession Stylishly</p>
+                    <p>2020 - 1 human journal, Featured artist of the week (7-14 July)</p>
+                    <p>2019 - Ake review, Black bodies, Gray matters</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Contact: +2348140298280 | chidimmanwaforstudio@gmail.com</p>
+    </div>
+
+    <script src="index.js" type="text/javascript"></script>
+    <script src="particles.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Loading screen
+        $(document).ready(function() {
+            $("#loading").delay(2000).fadeOut(500);
+        });
+
+        // Container navigation functions
+        function showabout() {
+            $("#about_container").addClass("active");
+        }
+
+        function closeabout() {
+            $("#about_container").removeClass("active");
+        }
+
+        function showwork() {
+            $("#work_container").addClass("active");
+        }
+
+        function closework() {
+            $("#work_container").removeClass("active");
+        }
+
+        function showcontact() {
+            $("#contact_container").addClass("active");
+        }
+
+        function closecontact() {
+            $("#contact_container").removeClass("active");
+        }
+
+        // Close containers when clicking outside content
+        document.addEventListener('click', function(event) {
+            const containers = document.querySelectorAll('.container');
+            containers.forEach(container => {
+                if (container.classList.contains('active') && 
+                    !container.contains(event.target) && 
+                    !event.target.matches('#menu a')) {
+                    container.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
