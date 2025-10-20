@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,14 +43,27 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            /* Improved background image handling */
             background-image: url('./p\ \(6\).jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-repeat: no-repeat;
             position: relative;
+            /* Fallback background color */
+            background-color: var(--african-brown);
         }
 
-       
+        /* Ensure background image works on mobile */
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll; /* Better for mobile performance */
+                background-size: cover;
+                background-position: center;
+                min-height: 100vh;
+                height: 100%;
+            }
+        }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
@@ -175,8 +185,6 @@
             color: var(--light);
             position: relative;
         }
-
-    
 
         #middle h1 {
             font-size: 4rem;
@@ -441,9 +449,23 @@
         }
 
         /* Footer */
-      
-
-      
+        #footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            background: linear-gradient(90deg, rgba(10,10,10,0.18), rgba(255,255,255,0.02));
+            border-top: 1px solid rgba(183,149,11,0.08);
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.35);
+            font-family: 'Raleway', sans-serif;
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -482,6 +504,11 @@
             .portfolio-nav a {
                 width: 100%;
                 text-align: center;
+            }
+            
+            /* Ensure containers also have proper background on mobile */
+            .container {
+                background-attachment: scroll;
             }
         }
     </style>
@@ -655,7 +682,7 @@
     </div>
 
     <!-- Footer -->
-    <footer id="footer" style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;align-items:center;padding:0.6rem 1rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background:linear-gradient(90deg, rgba(10,10,10,0.18), rgba(255,255,255,0.02));border-top:1px solid rgba(183,149,11,0.08);box-shadow:0 -8px 30px rgba(0,0,0,0.35);font-family:'Raleway',sans-serif;">
+    <footer id="footer">
         <div style="max-width:1100px;width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;align-items:center;color:var(--light);font-size:0.95rem;">
             <span style="color:var(--african-gold);font-weight:600;margin-right:6px;">Contact</span>
             <span style="opacity:0.95;">+234 814 029 8280</span>
